@@ -2,7 +2,9 @@ package com.adminPanel.doctorAdmin.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,7 +26,7 @@ public class Doctor {
     @JoinTable(name = "doctor_service",
             joinColumns = { @JoinColumn(name = "doctor_id") },
             inverseJoinColumns = { @JoinColumn(name = "service_id") })
-    private Set<Service> services = new HashSet<>();
+    private List<Service> service = new ArrayList<>();
 
 
 
@@ -51,12 +53,12 @@ public class Doctor {
         this.name = name;
     }
 
-    public Set<Service> getServices() {
-        return services;
+    public List<Service> getService() {
+        return service;
     }
 
-    public void setServices(Set<Service> services) {
-        this.services = services;
+    public void setService(List<Service> service) {
+        this.service = service;
     }
 
     @Override
@@ -64,6 +66,19 @@ public class Doctor {
         return "Doctor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", service=" + service +
                 '}';
+    }
+
+    public void addService(Service service) {
+        this.service.add(service);
+        service.getDoctors().add(this);
+    }
+    public void removeService(int serviceId) {
+        Service service = this.service.stream().filter(t -> t.getId() == serviceId).findFirst().orElse(null);
+        if (service != null) {
+            this.service.remove(service);
+            service.getDoctors().remove(this);
+        }
     }
 }

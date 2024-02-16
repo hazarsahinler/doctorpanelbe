@@ -3,7 +3,9 @@ package com.adminPanel.doctorAdmin.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,7 +27,7 @@ public class Service {
             },
             mappedBy = "service")
     @JsonIgnore
-    private Set<Doctor> doctors = new HashSet<>();
+    private List<Doctor> doctors = new ArrayList<>();
 
 
 
@@ -52,11 +54,11 @@ public class Service {
         this.serviceName = serviceName;
     }
 
-    public Set<Doctor> getDoctors() {
+    public List<Doctor> getDoctors() {
         return doctors;
     }
 
-    public void setDoctors(Set<Doctor> doctors) {
+    public void setDoctors(List<Doctor> doctors) {
         this.doctors = doctors;
     }
 
@@ -65,6 +67,7 @@ public class Service {
         return "Service{" +
                 "id=" + id +
                 ", serviceName='" + serviceName + '\'' +
+
                 '}';
     }
 }

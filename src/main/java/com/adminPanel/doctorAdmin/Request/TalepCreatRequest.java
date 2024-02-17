@@ -5,12 +5,21 @@ import jakarta.persistence.Id;
 
 
 public class TalepCreatRequest {
-    @Id
+
     private int id;
     private String text;
     Integer userId;
 
-    public TalepCreatRequest() {
+    Integer doctorId;
+
+
+
+    public Integer getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(Integer doctorId) {
+        this.doctorId = doctorId;
     }
 
     public int getId() {
@@ -43,6 +52,7 @@ public class TalepCreatRequest {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", userId=" + userId +
+                ", doctorId=" + doctorId +
                 '}';
     }
 }

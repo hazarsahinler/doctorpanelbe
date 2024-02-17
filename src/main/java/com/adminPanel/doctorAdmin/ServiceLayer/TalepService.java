@@ -1,5 +1,6 @@
 package com.adminPanel.doctorAdmin.ServiceLayer;
 
+import com.adminPanel.doctorAdmin.Entity.Doctor;
 import com.adminPanel.doctorAdmin.Entity.Talep;
 import com.adminPanel.doctorAdmin.Entity.User;
 import com.adminPanel.doctorAdmin.Repository.TalepRepository;
@@ -16,6 +17,8 @@ public class TalepService {
     TalepRepository talepRepository;
     @Autowired
     UserService userService;
+    @Autowired
+    DoctorService doctorService;
 
 
 
@@ -28,13 +31,18 @@ public class TalepService {
 
     public Talep createOneTalep(TalepCreatRequest newTalepRequest) {
         User user=  userService.getOneUser(newTalepRequest.getUserId());
+        Doctor doctor = doctorService.getDoctorsById(newTalepRequest.getDoctorId());
 
-        if(user==null)
+
+        if(user==null || doctor ==null )
             return null;
+
+
         Talep talep = new Talep();
         talep.setId(newTalepRequest.getId());
         talep.setText(newTalepRequest.getText());
         talep.setUser(user);
+        talep.setDoctor(doctor);
         return talepRepository.save(talep);
 
     }

@@ -3,9 +3,7 @@ package com.adminPanel.doctorAdmin.Entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name="doctor")
@@ -27,6 +25,8 @@ public class Doctor {
             joinColumns = { @JoinColumn(name = "doctor_id") },
             inverseJoinColumns = { @JoinColumn(name = "service_id") })
     private List<Service> service = new ArrayList<>();
+
+
 
 
 
@@ -61,12 +61,15 @@ public class Doctor {
         this.service = service;
     }
 
+
+
     @Override
     public String toString() {
         return "Doctor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", service=" + service +
+
                 '}';
     }
 

@@ -5,17 +5,13 @@ import com.adminPanel.doctorAdmin.Entity.Service;
 import com.adminPanel.doctorAdmin.Repository.DoctorRepository;
 import com.adminPanel.doctorAdmin.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
-public class ServiceController {
+public class HizmetController {
     @Autowired
     ServiceRepository serviceRepository;
     @Autowired
@@ -33,7 +29,7 @@ public class ServiceController {
     @GetMapping("/services/{serviceId}")
     public Service getServiceById(@PathVariable Integer serviceId) {
         Service service = serviceRepository.findById(serviceId).get();
-        return  service;
+        return service;
     }
 
     @PostMapping("/services")

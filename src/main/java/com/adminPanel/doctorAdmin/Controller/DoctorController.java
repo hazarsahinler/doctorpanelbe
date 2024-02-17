@@ -6,12 +6,10 @@ import com.adminPanel.doctorAdmin.Entity.Service;
 import com.adminPanel.doctorAdmin.Repository.DoctorRepository;
 import com.adminPanel.doctorAdmin.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.Doc;
 import java.util.*;
 
 @RestController
@@ -58,7 +56,7 @@ public class DoctorController {
 
         List<Service> serviceList =  doctor.getService();
 
-        int size=serviceList.size();
+        int size= serviceList.size();
         int i ;
         for(i=0;i<size;i++){
 

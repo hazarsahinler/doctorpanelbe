@@ -17,6 +17,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Talep> taleps;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Rapor> rapors;
+
     public User() {
     }
 

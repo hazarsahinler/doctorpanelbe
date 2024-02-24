@@ -5,6 +5,7 @@ import com.adminPanel.doctorAdmin.Entity.Doctor;
 import com.adminPanel.doctorAdmin.Entity.Service;
 import com.adminPanel.doctorAdmin.Repository.DoctorRepository;
 import com.adminPanel.doctorAdmin.Repository.ServiceRepository;
+import com.adminPanel.doctorAdmin.ServiceLayer.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,28 +14,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/doctor")
 public class DoctorController {
-
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    DoctorService doctorService;
     @Autowired
     ServiceRepository serviceRepository;
 
 
 
     // Get all doctors
-    @GetMapping("/doctors")
+    @GetMapping
     public List<Doctor> getAllDoctors() {
-        return doctorRepository.findAll();
+        return doctorService.getAllDoctors();
     }
-    @GetMapping("/doctors/{doctorId}")
+    @GetMapping("/{doctorId}")
     public Doctor getDoctorById(@PathVariable Integer doctorId) {
-        Doctor doctor = doctorRepository.findById(doctorId).get();
-        return doctor;
+        return doctorService.getDoctorsById(doctorId);
     }
 
-    @PostMapping("/doctors")
+    @PostMapping
     public ResponseEntity<Doctor> createDoctor(@RequestBody Doctor doctor) {
         Doctor _doctor;
         _doctor = doctorRepository.save(doctor);

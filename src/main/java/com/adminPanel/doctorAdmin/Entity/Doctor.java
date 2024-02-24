@@ -26,6 +26,10 @@ public class Doctor {
             inverseJoinColumns = { @JoinColumn(name = "service_id") })
     private List<Service> service = new ArrayList<>();
 
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    List<Talep> taleps;
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    List<Rapor> rapors;
 
 
 
@@ -33,8 +37,24 @@ public class Doctor {
     public Doctor() {
     }
 
+    public List<Rapor> getRapors() {
+        return rapors;
+    }
+
+    public void setRapors(List<Rapor> rapors) {
+        this.rapors = rapors;
+    }
+
     public Doctor(String name) {
         this.name = name;
+    }
+
+    public List<Talep> getTaleps() {
+        return taleps;
+    }
+
+    public void setTaleps(List<Talep> taleps) {
+        this.taleps = taleps;
     }
 
     public int getId() {
@@ -62,14 +82,13 @@ public class Doctor {
     }
 
 
-
     @Override
     public String toString() {
         return "Doctor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", service=" + service +
-
+                ", taleps=" + taleps +
                 '}';
     }
 
@@ -84,4 +103,6 @@ public class Doctor {
             service.getDoctors().remove(this);
         }
     }
+
+
 }

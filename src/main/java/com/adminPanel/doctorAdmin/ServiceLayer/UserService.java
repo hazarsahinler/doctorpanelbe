@@ -27,6 +27,7 @@ public class UserService {
 
     }
 
+
     public User updateOneUser(Integer userId, User newUser) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent())

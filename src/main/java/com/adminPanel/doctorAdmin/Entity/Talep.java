@@ -22,13 +22,15 @@ public class Talep {
     @JsonIgnore
     User user;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "doctor_id",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    User user;
+    Doctor doctor;
+
 
     public Talep() {
     }
+
 
     public int getId() {
         return id;
@@ -54,12 +56,21 @@ public class Talep {
         this.user = user;
     }
 
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
     @Override
     public String toString() {
         return "Talep{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", user=" + user +
+                ", doctor=" + doctor +
                 '}';
     }
 }

@@ -51,6 +51,14 @@ public class User {
         this.taleps = taleps;
     }
 
+    public List<Rapor> getRapors() {
+        return rapors;
+    }
+
+    public void setRapors(List<Rapor> rapors) {
+        this.rapors = rapors;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -59,4 +67,6 @@ public class User {
                 ", taleps=" + taleps +
                 '}';
     }
+
+
 }

@@ -5,15 +5,19 @@ import com.adminPanel.doctorAdmin.Entity.Rapor;
 import com.adminPanel.doctorAdmin.Entity.User;
 import com.adminPanel.doctorAdmin.Repository.RaporRepository;
 import com.adminPanel.doctorAdmin.Request.RaporCreatRequest;
+import com.adminPanel.doctorAdmin.Response.RaporResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.print.Doc;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class RaporService {
@@ -25,9 +29,14 @@ public class RaporService {
     @Autowired
     DoctorService doctorService;
 
-    public List<Rapor> getAllRapors() {
 
-        return raporRepository.findAll();
+
+    public Stream<Rapor> getAllFiles() {
+        return raporRepository.findAll().stream();
+    }
+
+    public Rapor getRapor(String id) {
+        return raporRepository.findById(id).get();
     }
     public Rapor createOneRapor(RaporCreatRequest raporCreatRequest) throws IOException {
         List<User> userList = userService.getAllUsers();
